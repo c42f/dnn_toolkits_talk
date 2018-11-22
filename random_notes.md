@@ -1,4 +1,4 @@
-# Deep Neural Net Toolkit Tutorial
+# Some initial notes. Probably not much use
 
 Notes on Deep Neural networks toolkits, prepared for the
 [2018 CAI Deep Learning Workshop](https://docs.google.com/document/d/1GIyGuNszik1dbG6bNSVXUgAHFRDZHdDWfOn3vxm6PVk)
@@ -13,7 +13,6 @@ language and linear algebra basics.
 
 * This is a **tutorial**; it seeks to mostly *show* rather than *explain*.
   See <https://www.divio.com/blog/documentation>.
-* I'm new to these, so this may be the only 
 
 Tutorial Goal: get one small, simple model running in each of
 * Keras - python; easy
@@ -127,6 +126,7 @@ conda create --name tf_gpu tensorflow-gpu
 
 ## Keras
 
+...
 
 ## Flux
 
@@ -149,7 +149,44 @@ https://pgaleone.eu/tensorflow/gan/2018/11/04/tensorflow-2-models-migration-and-
 
 * A relatively low level toolkit 
 
-## NiftiNet
 
+# Nvidia install
 
+Some crimes required for nvidia driver install on XPS-15 9560
 
+For install via the normal package system:
+
+```
+$ apt install nvidia-driver-390
+$ sudo apt install nvidia-cuda-toolkit
+```
+
+Also needed (maybe?) to comment out udev rule
+
+```
+chris@xyz:~$ cat /etc/udev/rules.d/pci_pm.rules 
+# NVidia card
+# ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{device}=="0x1c8d", ATTR{power/control}="auto"
+```
+
+Alternatively for the latest, follow actions from https://developer.nvidia.com, in particular:
+https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=deblocal
+
+```
+$ wget https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda-repo-ubuntu1804-10-0-local-10.0.130-410.48_1.0-1_amd64
+
+$ sudo dpkg -i cuda-repo-ubuntu1804-10-0-local-10.0.130-410.48_1.0-1_amd64.deb
+$ sudo apt-key add /var/cuda-repo-<version>/7fa2af80.pub
+$ sudo apt-get update
+$ sudo apt-get install cuda
+```
+
+This will install nvidia-410 drivers which are more recent than the versions in
+the official ubuntu repo...
+
+Download CUDNN
+
+```
+$ sudo dpkg -i libcudnn7_7.4.1.5-1+cuda10.0_amd64.deb
+$ sudo dpkg -i libcudnn7-dev_7.4.1.5-1+cuda10.0_amd64.deb 
+```
