@@ -27,3 +27,10 @@ $ sudo apt-get install cuda
 
 This will install nvidia-410 drivers which are more recent than the versions in
 the official ubuntu repo...
+
+Download CUDNN
+
+```
+$ sudo dpkg -i libcudnn7_7.4.1.5-1+cuda10.0_amd64.deb
+$ sudo dpkg -i libcudnn7-dev_7.4.1.5-1+cuda10.0_amd64.deb 
+```
